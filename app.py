@@ -35,7 +35,9 @@ equipos_schema=EquipoSchema(many=True)  # multiples registros
 
 @app.route('/')
 def index():
-    return "<h1>Corriendo Servidor Flask</h1>"
+    return "<h1>Corriendo servidor Flask</h1>"
+
+
 
 @app.route('/equipos',methods=['GET'])
 def get_Equipos():
@@ -47,12 +49,14 @@ def get_Equipos():
 def get_equipo(id):
     equipo=Equipo.query.get(id)
     return equipo_schema.jsonify(equipo)
+
 @app.route('/equipo/<id>',methods=['DELETE'])
 def delete_equipo(id):
     equipo=Equipo.query.get(id)
     db.session.delete(equipo)
     db.session.commit()
     return equipo_schema.jsonify(equipo)
+
 @app.route('/equipos', methods=['POST']) # crea ruta o endpoint
 def create_equipo():
     print(request.json)  # request.json contiene el json que envio el cliente
