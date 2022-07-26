@@ -1,10 +1,12 @@
 #from email.mime import image
-from tkinter import image_names
+#from tkinter import image_names
+
 from flask import Flask ,jsonify,request
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 app=Flask(__name__)
+
 CORS(app)
 # configuro la base de datos, con el nombre el usuario y la clave
 app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://sql10507576:pejJiFNmqt@sql10.freesqldatabase.com/sql10507576'
@@ -68,6 +70,7 @@ def create_equipo():
     db.session.add(new_equipo)
     db.session.commit()
     return equipo_schema.jsonify(new_equipo)
+
 @app.route('/equipos/<id>' ,methods=['PUT'])
 def update_equipo(id):
     equipo=Equipo.query.get(id)
